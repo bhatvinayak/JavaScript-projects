@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body,
+      .jumbotran {
+        padding: 50px;
+      }
+      .text-giant {
+        font-size: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h2>How much a pie costs</h2>
+      <form>
+        <div class="form-group">
+          <label for="Price">Price</label>
+          <input class="price" type="number" class="form-control" name="price" value="20" />
+        </div>
+
+        <div class="form-group">
+          <label for="quantity">Quantity
+              <span class="label label-primary qlabel">1</span>
+          </label>
+          <input class="quantity" type="range" class="form-control" name="quantity" value="1" min="1" max="10" step="1"/>
+        </div>
+      </form>
+
+      <div class="text-right text-giant total"></div>
+    </div>
+
+    <script>
+        //grab every data you need
+        const price = document.querySelector(['.price']);
+        const quantity = document.querySelector(['.quantity']);
+        const total = document.querySelector('.total');
+        const qlabel = document.querySelector('.qlabel');
+
+        //event listener
+        price.addEventListener('input', calculatecost);
+        quantity.addEventListener('input', calculatecost);
+        quantity.addEventListener('input', updatequantity);
+        //first run
+        calculatecost();
+        //function
+        function updatequantity () {
+            const uq = quantity.value;
+            console.log(qlabel.value);
+            qlabel.innerText = uq;
+        }
+        function calculatecost(){
+            const p = price.value;
+            const q = quantity.value;
+            const t = p*q;
+            total.innerText = '$'+t;
+        }
+    </script>
+  </body>
+</html>
